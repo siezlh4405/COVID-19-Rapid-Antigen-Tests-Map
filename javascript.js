@@ -73,6 +73,9 @@
         setDistOption(INIT_CITY);
         selectArea(INIT_CITY, '', '');
 
+        // 移除 Loading 頁面
+        document.querySelector('.loading').classList.add('display-none');
+
         // 處理初始化資料
         setShowing();
     }
