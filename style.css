@@ -1,0 +1,80 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: #333;
+    padding: 3rem;
+    box-sizing: border-box;
+}
+
+/* 移除 select focus黑底 */
+select:focus {
+    outline: none;
+}
+
+.main {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.header-box {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.selection-box {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+}
+
+.selection-box__group {
+    display: flex;
+    align-items: center;
+}
+
+.selection-box__group:not(:last-child) {
+    margin-right: 1.5rem;
+}
+
+.selection-box__text {
+    font-size: 2rem;
+    font-weight: 700;
+    padding-right: 1rem;
+}
+
+.stock-container {
+
+}
+
+.stock-box {
+    padding: 3rem;
+    border-radius: 5px;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .2);
+}
+
+.stock-box:not(:last-child) {
+    margin-bottom: 4rem;
+}
+
+.stock-box ul {
+    list-style: none;
+}
+
+.stock-box__title {
+    font-weight: 700;
+    margin-right: 1rem;
+}
