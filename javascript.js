@@ -27,6 +27,9 @@
     };
     const pharmacyData = [];
     let showPharmacyData = [];
+    let nearlySpace = {};
+    var latitude = 0;
+    var longitude = 0;
 
     $(document).ready(function() {
         $.ajax({
@@ -69,6 +72,21 @@
             pharmacyData.push(tmpData);
         }
 
+        if ('geolocation' in navigator) {
+            /* geolocation is available */
+            navigator.geolocation.getCurrentPosition(function(position) {
+                console.log(position.coords.latitude, position.coords.longitude);
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+
+                // 找最接近使用者的藥局
+                checkNearlySpace();
+            });
+        } else {
+            /* geolocation IS NOT available */
+            console.log(123);
+        }
+
         // 設定預設要選的縣市與下拉選單
         document.getElementById('city').value = INIT_CITY;
         setDistOption(INIT_CITY);
@@ -91,6 +109,15 @@
         const stockContainer = document.querySelector('.stock-container');
         stockContainer.innerHTML = '';
         showPharmacyData.forEach(data => stockContainer.appendChild(getStockBoxNode(data)));
+        setStockQty();
+
+        // 找最接近使用者的藥局
+        checkNearlySpace();
+    }
+
+    function setStockQty() {
+        const stockQtyDom = document.querySelector('#stock-qty');
+        stockQtyDom.innerHTML = showPharmacyData.length;
     }
 
     function getStockBoxNode(data) {
@@ -146,5 +173,47 @@
     function clearAllDist() {
         const distDom = document.getElementById('dist');
         distDom.options.length = 0;
+    }
+
+    function distance(lat1, lon1, lat2, lon2, unit) {
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
+        }
+        else {
+            var radlat1 = Math.PI * lat1/180;
+            var radlat2 = Math.PI * lat2/180;
+            var theta = lon1-lon2;
+            var radtheta = Math.PI * theta/180;
+            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+            if (dist > 1) {
+                dist = 1;
+            }
+            dist = Math.acos(dist);
+            dist = dist * 180/Math.PI;
+            dist = dist * 60 * 1.1515;
+            if (unit=="K") { dist = dist * 1.609344 }
+            if (unit=="N") { dist = dist * 0.8684 }
+            return dist;
+        }
+    }
+
+    function checkNearlySpace() {
+        let minDistance = Infinity;
+        let tmpMinDistance = 0;
+
+        showPharmacyData.forEach((data) => {
+            tmpMinDistance = distance(latitude, longitude, data.Latitude, data.Longitude, 'K');
+
+            if (minDistance > tmpMinDistance) {
+                minDistance = tmpMinDistance;
+                nearlySpace = data;
+
+            }
+        });
+
+        console.log(nearlySpace);
+        console.log(minDistance);
+        console.log(latitude);
+        console.log(longitude);
     }
 })();

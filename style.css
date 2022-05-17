@@ -54,10 +54,14 @@ select:focus {
     margin-right: 1.5rem;
 }
 
-.selection-box__text {
+.selection-box__title {
     font-size: 2rem;
     font-weight: 700;
     padding-right: 1rem;
+}
+
+.selection-box__bold-text {
+    font-weight: 700;
 }
 
 /* STOCK CONTAINER */
