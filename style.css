@@ -20,6 +20,10 @@ body {
     box-sizing: border-box;
 }
 
+a:visited {
+    color: blue;
+}
+
 /* 移除 select focus黑底 */
 select:focus {
     outline: none;

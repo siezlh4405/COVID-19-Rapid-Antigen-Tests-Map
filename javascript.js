@@ -32,23 +32,35 @@
     var longitude = 0;
 
     $(document).ready(function() {
-        $.ajax({
-            type: "GET",
-            url: "Fstdata.csv",
-            // url: "https://data.nhi.gov.tw/resource/Nhi_Fst/Fstdata.csv",
-            dataType: "text",
-            success: setInitStockData,
-         });
+        if ('geolocation' in navigator) {
+            /* geolocation is available */
+            navigator.geolocation.getCurrentPosition(function(position) {
+                console.log(position.coords.latitude, position.coords.longitude);
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
 
-         document.getElementById('city').addEventListener('change', changeCityOption);
-         document.getElementById('dist').addEventListener('change', changeDistOption);
+                $.ajax({
+                    type: "GET",
+                    url: "Fstdata.csv",
+                    // url: "https://data.nhi.gov.tw/resource/Nhi_Fst/Fstdata.csv",
+                    dataType: "text",
+                    success: setInitStockData,
+                });
+            });
+        } else {
+            /* geolocation IS NOT available */
+            console.log('ERROR');
+        }
+
+        document.getElementById('city').addEventListener('change', changeCityOption);
+        document.getElementById('dist').addEventListener('change', changeDistOption);
     });
 
     function setInitStockData(csvData) {
         const splitAllData = csvData.split('\r\n');
         let splitPharmacyData = {};
         let tmpData = {};
-    
+
         for (let index = 1; index < splitAllData.length; index++) {
             splitPharmacyData = splitAllData[index].split(',');
             
@@ -67,25 +79,16 @@
                 Stock: splitPharmacyData[7],
                 Time: splitPharmacyData[8],
                 Note: splitPharmacyData[9],
+                Map: `https://www.google.com/maps/place/${splitPharmacyData[2]}`,
+                Distance: distance(latitude, longitude, splitPharmacyData[4], splitPharmacyData[3], 'K'),
             }
     
             pharmacyData.push(tmpData);
         }
 
-        if ('geolocation' in navigator) {
-            /* geolocation is available */
-            navigator.geolocation.getCurrentPosition(function(position) {
-                console.log(position.coords.latitude, position.coords.longitude);
-                latitude = position.coords.latitude;
-                longitude = position.coords.longitude;
+        pharmacyData.sort((a, b) => a.Distance - b.Distance);
 
-                // 找最接近使用者的藥局
-                checkNearlySpace();
-            });
-        } else {
-            /* geolocation IS NOT available */
-            console.log('ERROR');
-        }
+        console.log(pharmacyData);
 
         // 設定預設要選的縣市與下拉選單
         document.getElementById('city').value = INIT_CITY;
@@ -112,7 +115,7 @@
         setStockQty();
 
         // 找最接近使用者的藥局
-        checkNearlySpace();
+        // checkNearlySpace();
     }
 
     function setStockQty() {
@@ -131,12 +134,22 @@
         title.forEach(item => {
             const liNode = document.createElement('li');
             const titleNode = document.createElement('span');
-            const textNode = document.createElement('span');
             titleNode.innerText = `${item}: `;
             titleNode.className = 'stock-box__title'
-            textNode.innerText = data[titleToKey[item]];
-            liNode.appendChild(titleNode, );
-            liNode.appendChild(textNode);
+            liNode.appendChild(titleNode);
+
+            if (item !== '地址') {
+                const textNode = document.createElement('span');
+                textNode.innerText = data[titleToKey[item]];
+                liNode.appendChild(textNode);
+            } else {
+                const aNode = document.createElement('a');
+                aNode.innerText = data[titleToKey[item]];
+                aNode.href = data.Map;
+                aNode.target = '_blank';
+                liNode.appendChild(aNode);
+            }
+
             ulNode.appendChild(liNode);
         });
 
