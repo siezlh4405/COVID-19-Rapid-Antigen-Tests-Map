@@ -156,7 +156,7 @@
         stobckBoxDataDistanceDataNode.className = 'stock-box__distance-data';
         pDistanceNode.className = 'stock-box__distance-bold-text';
         pNode.innerText = '距離';
-        pDistanceNode.innerText = Math.round((data.Distance + Number.EPSILON) * 100) / 100;
+        pDistanceNode.innerText = (latitude === 0 && latitude === 0) ? '---' : Math.round((data.Distance + Number.EPSILON) * 100) / 100;
         p2Node.innerText = '公里';
 
         stobckBoxDataDistanceDataNode.appendChild(pNode);
