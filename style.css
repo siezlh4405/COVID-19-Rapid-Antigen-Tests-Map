@@ -24,6 +24,17 @@ a:visited {
     color: blue;
 }
 
+select {
+    min-width: 8rem;
+    height: 2.6rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: 300;
+    font-family: 'Lato', sans-serif;
+    color: #fff;
+    background-color: #888;
+}
+
 /* 移除 select focus黑底 */
 select:focus {
     outline: none;
@@ -45,6 +56,7 @@ select:focus {
 
 .selection-box {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     margin-bottom: 2rem;
 }
@@ -65,6 +77,7 @@ select:focus {
 }
 
 .selection-box__bold-text {
+    font-size: 2rem;
     font-weight: 700;
 }
 
@@ -75,6 +88,7 @@ select:focus {
 }
 
 .stock-box {
+    display: flex;
     padding: 3rem;
     border-radius: 5px;
     box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .2);
@@ -84,7 +98,41 @@ select:focus {
     margin-bottom: 4rem;
 }
 
-.stock-box ul {
+.stock-box__data {
+    position: relative;
+    flex: 1;
+    min-width: 12.5rem;
+    margin-left: 3rem;
+}
+
+.stock-box__distance {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    border: 5px solid #ccc;
+    border-radius: 50%;
+    text-align: center;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.stock-box__distance-data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6rem;
+}
+
+.stock-box__distance-bold-text {
+    font-weight: 700;
+}
+
+.stock-box__detail {
+    flex: 3;
     list-style: none;
 }
 

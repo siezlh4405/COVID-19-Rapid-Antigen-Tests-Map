@@ -144,7 +144,28 @@
         const titleToKey = {'名稱': 'Name', '地址': 'Address', '電話': 'Phone', '快篩品牌': 'Brand', '庫存數量': 'Stock', '更新時間': 'Time', '備註': 'Note'};
         const stockBoxNode = document.createElement('div');
         const ulNode = document.createElement('ul');
+        const stobckBoxDataNode = document.createElement('div');
+        const stobckBoxDataDistanceNode = document.createElement('div');
+        const stobckBoxDataDistanceDataNode = document.createElement('div');
+        const pNode = document.createElement('p');
+        const pDistanceNode = document.createElement('p');
+        const p2Node = document.createElement('p');
 
+        stobckBoxDataNode.className = 'stock-box__data';
+        stobckBoxDataDistanceNode.className = 'stock-box__distance';
+        stobckBoxDataDistanceDataNode.className = 'stock-box__distance-data';
+        pDistanceNode.className = 'stock-box__distance-bold-text';
+        pNode.innerText = '距離';
+        pDistanceNode.innerText = Math.round((data.Distance + Number.EPSILON) * 100) / 100;
+        p2Node.innerText = '公里';
+
+        stobckBoxDataDistanceDataNode.appendChild(pNode);
+        stobckBoxDataDistanceDataNode.appendChild(pDistanceNode);
+        stobckBoxDataDistanceDataNode.appendChild(p2Node);
+        stobckBoxDataDistanceNode.appendChild(stobckBoxDataDistanceDataNode);
+        stobckBoxDataNode.appendChild(stobckBoxDataDistanceNode);
+
+        ulNode.className = 'stock-box__detail';
         stockBoxNode.className = 'stock-box';
 
         title.forEach(item => {
@@ -170,6 +191,7 @@
         });
 
         stockBoxNode.appendChild(ulNode);
+        stockBoxNode.appendChild(stobckBoxDataNode);
 
         return stockBoxNode;
     }
