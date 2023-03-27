@@ -39,6 +39,12 @@ select:focus {
 .main {
   width: 65%;
   margin: 0 auto; }
+  @media only screen and (max-width: 62.25em) {
+    .main {
+      width: 85%; } }
+  @media only screen and (max-width: 37.5em) {
+    .main {
+      width: 100%; } }
 
 /* HEADER BOX */
 .header-box {
@@ -74,6 +80,9 @@ select:focus {
   padding: 3rem;
   border-radius: 5px;
   box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2); }
+  @media only screen and (max-width: 37.5em) {
+    .stock-box {
+      flex-direction: column-reverse; } }
 
 .stock-box:not(:last-child) {
   margin-bottom: 4rem; }
@@ -83,6 +92,10 @@ select:focus {
   flex: 1;
   min-width: 12.5rem;
   margin-left: 3rem; }
+  @media only screen and (max-width: 37.5em) {
+    .stock-box__data {
+      margin-left: 0;
+      margin-bottom: 1.5rem; } }
 
 .stock-box__distance {
   position: absolute;
@@ -96,6 +109,12 @@ select:focus {
   text-align: center;
   word-break: break-all;
   overflow: hidden; }
+  @media only screen and (max-width: 37.5em) {
+    .stock-box__distance {
+      position: relative;
+      top: unset;
+      right: unset;
+      margin: 0 auto; } }
 
 .stock-box__distance-data {
   position: absolute;
