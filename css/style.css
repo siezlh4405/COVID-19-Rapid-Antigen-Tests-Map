@@ -30,11 +30,10 @@ select {
   font-family: 'Lato', sans-serif;
   color: #fff;
   background-color: #888;
-  cursor: pointer; }
-
-/* 移除 select focus黑底 */
-select:focus {
-  outline: none; }
+  cursor: pointer;
+  /* 移除 select focus黑底 */ }
+  select:focus {
+    outline: none; }
 
 .main {
   width: 65%;
@@ -57,22 +56,18 @@ select:focus {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-bottom: 2rem; }
-
-.selection-box__group {
-  display: flex;
-  align-items: center; }
-
-.selection-box__group:not(:last-child) {
-  margin-right: 1.5rem; }
-
-.selection-box__title {
-  font-size: 2rem;
-  font-weight: 700;
-  padding-right: 1rem; }
-
-.selection-box__bold-text {
-  font-size: 2rem;
-  font-weight: 700; }
+  .selection-box__group {
+    display: flex;
+    align-items: center; }
+    .selection-box__group:not(:last-child) {
+      margin-right: 1.5rem; }
+  .selection-box__title {
+    font-size: 2rem;
+    font-weight: 700;
+    padding-right: 1rem; }
+  .selection-box__bold-text {
+    font-size: 2rem;
+    font-weight: 700; }
 
 /* STOCK CONTAINER */
 .stock-box {
@@ -83,62 +78,55 @@ select:focus {
   @media only screen and (max-width: 37.5em) {
     .stock-box {
       flex-direction: column-reverse; } }
-
-.stock-box:not(:last-child) {
-  margin-bottom: 4rem; }
-
-.stock-box__data {
-  position: relative;
-  flex: 1;
-  min-width: 12.5rem;
-  margin-left: 3rem; }
-  @media only screen and (max-width: 37.5em) {
-    .stock-box__data {
-      margin-left: 0;
-      margin-bottom: 1.5rem; } }
-
-.stock-box__distance {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 120px;
-  height: 120px;
-  padding: 10px;
-  border: 5px solid #ccc;
-  border-radius: 50%;
-  text-align: center;
-  word-break: break-all;
-  overflow: hidden; }
-  .stock-box__distance_s {
-    border: 5px solid #33de47; }
-  .stock-box__distance_m {
-    border: 5px solid #e9ed72; }
-  .stock-box__distance_l {
-    border: 5px solid #eb7c1c; }
-  @media only screen and (max-width: 37.5em) {
-    .stock-box__distance {
-      position: relative;
-      top: unset;
-      right: unset;
-      margin: 0 auto; } }
-
-.stock-box__distance-data {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 1.6rem; }
-
-.stock-box__distance-bold-text {
-  font-weight: 700; }
-
-.stock-box__detail {
-  flex: 3;
-  list-style: none; }
-
-.stock-box__title {
-  font-weight: 700;
-  margin-right: 1rem; }
+  .stock-box:not(:last-child) {
+    margin-bottom: 4rem; }
+  .stock-box__data {
+    position: relative;
+    flex: 1;
+    min-width: 12.5rem;
+    margin-left: 3rem; }
+    @media only screen and (max-width: 37.5em) {
+      .stock-box__data {
+        margin-left: 0;
+        margin-bottom: 1.5rem; } }
+  .stock-box__distance {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    border: 5px solid #ccc;
+    border-radius: 50%;
+    text-align: center;
+    word-break: break-all;
+    overflow: hidden; }
+    .stock-box__distance_s {
+      border: 5px solid #33de47; }
+    .stock-box__distance_m {
+      border: 5px solid #e9ed72; }
+    .stock-box__distance_l {
+      border: 5px solid #eb7c1c; }
+    @media only screen and (max-width: 37.5em) {
+      .stock-box__distance {
+        position: relative;
+        top: unset;
+        right: unset;
+        margin: 0 auto; } }
+  .stock-box__distance-data {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6rem; }
+  .stock-box__distance-bold-text {
+    font-weight: 700; }
+  .stock-box__detail {
+    flex: 3;
+    list-style: none; }
+  .stock-box__title {
+    font-weight: 700;
+    margin-right: 1rem; }
 
 /* COMMON */
 .display-none {
@@ -152,32 +140,28 @@ select:focus {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6); }
-
-.loading__box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex; }
-
-.loading__circle {
-  display: block;
-  width: 2rem;
-  height: 2rem;
-  margin: 0 1rem;
-  border-radius: 50%;
-  background-color: #fff;
-  animation-name: showAndHidden;
-  animation-duration: 1.2s;
-  animation-timing-function: ease;
-  animation-fill-mode: backwards;
-  animation-iteration-count: infinite; }
-
-.loading__circle_1 {
-  animation-delay: .4s; }
-
-.loading__circle_2 {
-  animation-delay: .8s; }
+  .loading__box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; }
+  .loading__circle {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 1rem;
+    border-radius: 50%;
+    background-color: #fff;
+    animation-name: showAndHidden;
+    animation-duration: 1.2s;
+    animation-timing-function: ease;
+    animation-fill-mode: backwards;
+    animation-iteration-count: infinite; }
+  .loading__circle_1 {
+    animation-delay: .4s; }
+  .loading__circle_2 {
+    animation-delay: .8s; }
 
 @keyframes showAndHidden {
   0% {
