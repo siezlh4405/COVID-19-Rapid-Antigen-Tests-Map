@@ -114,6 +114,18 @@ select:focus {
     word-break: break-all;
     overflow: hidden;
 
+    &_s {
+        border: 5px solid #33de47;
+    }
+
+    &_m {
+        border: 5px solid #e9ed72;
+    }
+    
+    &_l {
+        border: 5px solid #eb7c1c;
+    }
+
     @media only screen and (max-width: $phone) {
         position: relative;
         top: unset;

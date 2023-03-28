@@ -109,6 +109,12 @@ select:focus {
   text-align: center;
   word-break: break-all;
   overflow: hidden; }
+  .stock-box__distance_s {
+    border: 5px solid #33de47; }
+  .stock-box__distance_m {
+    border: 5px solid #e9ed72; }
+  .stock-box__distance_l {
+    border: 5px solid #eb7c1c; }
   @media only screen and (max-width: 37.5em) {
     .stock-box__distance {
       position: relative;

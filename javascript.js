@@ -1,5 +1,5 @@
 (() => {
-    const INIT_CITY = '臺南市';
+    const INIT_CITY = '高雄市';
     const cityToDist = {
         '': [''],
         '臺北市': ['', '中正區', '大同區', '中山區', '松山區', '大安區', '萬華區', '信義區', '士林區', '北投區', '內湖區', '南港區', '文山區'],
@@ -85,6 +85,7 @@
                 Time: splitPharmacyData[8],
                 Note: splitPharmacyData[9],
                 Map: `https://www.google.com/maps/place/${splitPharmacyData[2]}`,
+                Tel: `tel:${splitPharmacyData[5]}`,
                 Distance: distance(latitude, longitude, splitPharmacyData[4], splitPharmacyData[3], 'K'),
             }
     
@@ -156,8 +157,22 @@
         stobckBoxDataDistanceDataNode.className = 'stock-box__distance-data';
         pDistanceNode.className = 'stock-box__distance-bold-text';
         pNode.innerText = '距離';
-        pDistanceNode.innerText = (latitude === 0 && latitude === 0) ? '---' : Math.round((data.Distance + Number.EPSILON) * 100) / 100;
+        
+        const distance = (latitude === 0 && latitude === 0) ? 0 : Math.round((data.Distance + Number.EPSILON) * 100) / 100;
+        
+        pDistanceNode.innerText = distance === 0 ? '---' : distance;
         p2Node.innerText = '公里';
+
+        // 不同距離顯示不同顏色
+        if (distance !== 0) {
+            if (distance <= 2) {
+                stobckBoxDataDistanceNode.classList.add('stock-box__distance_s');
+            } else if (distance <= 10) {
+                stobckBoxDataDistanceNode.classList.add('stock-box__distance_m');
+            } else if (distance > 10) {
+                stobckBoxDataDistanceNode.classList.add('stock-box__distance_l');
+            }
+        }
 
         stobckBoxDataDistanceDataNode.appendChild(pNode);
         stobckBoxDataDistanceDataNode.appendChild(pDistanceNode);
@@ -175,15 +190,21 @@
             titleNode.className = 'stock-box__title'
             liNode.appendChild(titleNode);
 
-            if (item !== '地址') {
+            if (item !== '地址' && item !== '電話') {
                 const textNode = document.createElement('span');
                 textNode.innerText = data[titleToKey[item]];
                 liNode.appendChild(textNode);
             } else {
                 const aNode = document.createElement('a');
                 aNode.innerText = data[titleToKey[item]];
-                aNode.href = data.Map;
-                aNode.target = '_blank';
+                
+                if (item === '地址') {
+                    aNode.href = data.Map;
+                    aNode.target = '_blank';
+                } else if (item === '電話') {
+                    aNode.href = data.Tel;
+                }
+
                 liNode.appendChild(aNode);
             }
 
