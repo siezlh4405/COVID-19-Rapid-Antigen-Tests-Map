@@ -1,5 +1,10 @@
+$laptop: 75em; // 1200px
 $tablet: 62.25em; // 996px
 $phone: 37.5em; // 600px
+
+$color-sufficient: #33de47;
+$color-passable: #c9ce41;
+$color-less: #d8843a;
 
 *,
 *::before,
@@ -21,4 +26,8 @@ body {
     color: #333;
     padding: 3rem;
     box-sizing: border-box;
+
+    @media only screen and (max-width: $tablet) {
+        font-size: 1.8rem;
+    }
 }

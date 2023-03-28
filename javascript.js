@@ -186,26 +186,50 @@
         title.forEach(item => {
             const liNode = document.createElement('li');
             const titleNode = document.createElement('span');
+            const liData = data[titleToKey[item]];
+            
             titleNode.innerText = `${item}: `;
             titleNode.className = 'stock-box__title'
             liNode.appendChild(titleNode);
 
-            if (item !== '地址' && item !== '電話') {
-                const textNode = document.createElement('span');
-                textNode.innerText = data[titleToKey[item]];
-                liNode.appendChild(textNode);
-            } else {
-                const aNode = document.createElement('a');
-                aNode.innerText = data[titleToKey[item]];
-                
-                if (item === '地址') {
-                    aNode.href = data.Map;
-                    aNode.target = '_blank';
-                } else if (item === '電話') {
-                    aNode.href = data.Tel;
-                }
+            switch (item) {
+                case '地址':
+                case '電話':
+                    const aNode = document.createElement('a');
+                    aNode.innerText = liData;
 
-                liNode.appendChild(aNode);
+                    if (item === '地址') {
+                        aNode.href = data.Map;
+                        aNode.target = '_blank';
+                    } else if (item === '電話') {
+                        aNode.href = data.Tel;
+                    }
+    
+                    liNode.appendChild(aNode);
+
+                    break;
+
+                case '庫存數量':
+                    const stockQtyNode = document.createElement('span');
+                    stockQtyNode.innerText = liData;
+                    stockQtyNode.classList.add('stock-box__stock-qty');
+
+                    if (+liData < 20) {
+                        stockQtyNode.classList.add('stock-box__stock-qty_less');
+                    } else if (+liData < 50) {
+                        stockQtyNode.classList.add('stock-box__stock-qty_passable');
+                    }
+
+                    liNode.appendChild(stockQtyNode);
+
+                    break;
+            
+                default:
+                    const textNode = document.createElement('span');
+                    textNode.innerText = liData;
+                    liNode.appendChild(textNode);
+
+                    break;
             }
 
             ulNode.appendChild(liNode);
