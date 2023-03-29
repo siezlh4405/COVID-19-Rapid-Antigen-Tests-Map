@@ -179,6 +179,10 @@ select {
         list-style: none;
 
         & > li {
+            & > span {
+                word-break: break-all
+            }
+            
             @media only screen and (max-width: $phone) {
                 &:not(:last-child) {
                     margin-bottom: 1rem;

@@ -151,6 +151,8 @@ select {
   .stock-box__detail {
     flex: 3;
     list-style: none; }
+    .stock-box__detail > li > span {
+      word-break: break-all; }
     @media only screen and (max-width: 37.5em) {
       .stock-box__detail > li:not(:last-child) {
         margin-bottom: 1rem; } }
