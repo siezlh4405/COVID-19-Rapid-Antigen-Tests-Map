@@ -54,8 +54,8 @@
     function callDataAPI() {
         $.ajax({
             type: "GET",
-            url: "Fstdata.csv",
-            // url: "https://data.nhi.gov.tw/resource/Nhi_Fst/Fstdata.csv",
+            // url: "Fstdata.csv",
+            url: "https://data.nhi.gov.tw/resource/Nhi_Fst/Fstdata.csv",
             dataType: "text",
             success: setInitStockData,
         });
